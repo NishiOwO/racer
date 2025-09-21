@@ -1,0 +1,5 @@
+project("raknet")
+	kind("StaticLib")
+	targetdir("lib/%{cfg.buildcfg}/%{cfg.platform}")
+	includedirs("include")
+	files("src/*.cpp")

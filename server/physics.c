@@ -135,6 +135,18 @@ void physics(void){
 		dJointSetHinge2Param(bodies[i].joints[1], dParamFMax2, 0.75);
 		dJointSetHinge2Param(bodies[i].joints[2], dParamFMax2, 0.75);
 		dJointSetHinge2Param(bodies[i].joints[3], dParamFMax2, 0.75);
+
+
+		dJointSetHinge2Param(bodies[i].joints[0], dParamLoStop, -0.75);
+		dJointSetHinge2Param(bodies[i].joints[0], dParamHiStop, 0.75);
+		dJointSetHinge2Param(bodies[i].joints[1], dParamLoStop, -0.75);
+		dJointSetHinge2Param(bodies[i].joints[1], dParamHiStop, 0.75);
+
+		dJointSetHinge2Param(bodies[i].joints[0], dParamFMax, 0.2);
+		dJointSetHinge2Param(bodies[i].joints[1], dParamFMax, 0.2);
+
+		dJointSetHinge2Param(bodies[i].joints[0], dParamVel, 100);
+		dJointSetHinge2Param(bodies[i].joints[1], dParamVel, 100);
 	}
 
 	dSpaceCollide(space, 0, &near_callback);

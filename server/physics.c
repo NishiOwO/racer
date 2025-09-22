@@ -127,14 +127,14 @@ void physics(void){
 		const dReal* p = dBodyGetPosition(bodies[i].wheels[0]);
 		printf("car %f %f %f\nwheel %f %f %f\n", p1[0], p1[1], p1[2], p[0], p[1], p[2]);
 
-		dJointSetHinge2Param(bodies[i].joints[0], dParamVel2, -100);
-		dJointSetHinge2Param(bodies[i].joints[1], dParamVel2, -100);
+		dJointSetHinge2Param(bodies[i].joints[0], dParamVel2, 200);
+		dJointSetHinge2Param(bodies[i].joints[1], dParamVel2, 200);
 		dJointSetHinge2Param(bodies[i].joints[2], dParamVel2, 0);
 		dJointSetHinge2Param(bodies[i].joints[3], dParamVel2, 0);
-		dJointSetHinge2Param(bodies[i].joints[0], dParamFMax2, 0.1);
-		dJointSetHinge2Param(bodies[i].joints[1], dParamFMax2, 0.1);
-		dJointSetHinge2Param(bodies[i].joints[2], dParamFMax2, 0.1);
-		dJointSetHinge2Param(bodies[i].joints[3], dParamFMax2, 0.1);
+		dJointSetHinge2Param(bodies[i].joints[0], dParamFMax2, 0.75);
+		dJointSetHinge2Param(bodies[i].joints[1], dParamFMax2, 0.75);
+		dJointSetHinge2Param(bodies[i].joints[2], dParamFMax2, 0.75);
+		dJointSetHinge2Param(bodies[i].joints[3], dParamFMax2, 0.75);
 	}
 
 	dSpaceCollide(space, 0, &near_callback);
@@ -149,8 +149,8 @@ void physics_car(uint64_t id, double x, double y, double z){
 	bodykv_t kv;
 	int i;
 
-	dMassSetBox(&m, 1, 1, 1, 1);
-	dMassAdjust(&m, 100);
+	dMassSetBox(&m, 1, 0.45 / 2, 0.75 / 2, 0.6 / 2);
+	dMassAdjust(&m, 2);
 
 	dBodySetMass(body, &m);
 	st = dCreateBox(space, 0.45 / 2, 0.75 / 2, 0.6 / 2);
@@ -165,17 +165,14 @@ void physics_car(uint64_t id, double x, double y, double z){
 	for(i = 0; i < 4; i++){
 		dGeomID g;
 		dBodyID b = dBodyCreate(world);
-		dQuaternion q;
 		dJointID j;
 		const dReal* p;
 		dMass m;
 		dVector3 unit1 = {0, 1, 0};
 		dVector3 unit2 = {1, 0, 0};
 
-//		dQFromAxisAndAngle(q, 0, 1, 0, 90.0 / 180 * M_PI);
-//		dBodySetQuaternion(b, q);
 		dMassSetSphere(&m, 1, TIRE_RADIUS);
-		dMassAdjust(&m, 100);
+		dMassAdjust(&m, 1);
 		dBodySetMass(b, &m);
 		
 		g = dCreateSphere(space, TIRE_RADIUS);

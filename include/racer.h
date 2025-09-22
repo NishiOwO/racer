@@ -4,6 +4,7 @@
 #include <stb_ds.h>
 
 #include <stdio.h>
+#include <stdint.h>
 
 #ifdef RACER_CLIENT
 #define RGFW_OPENGL
@@ -44,6 +45,9 @@ extern "C" {
 #define MAXCLIENTS 32
 #define FPS 60
 #define TICK 50
+
+#define TIRE_WIDTH 0.06
+#define TIRE_RADIUS 0.075
 
 extern double map_step;
 extern double map_width;

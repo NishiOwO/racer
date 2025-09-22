@@ -90,8 +90,8 @@ static void draw_cyl(double r, double h){
 }
 
 static void draw_yugo(double x, double y, double z, double rx, double ry, double rz, double tirerot){
-	const double tw = 0.06;
-	const double tr = 0.075;
+	const double tw = TIRE_WIDTH;
+	const double tr = TIRE_RADIUS;
 
 	glColor3f(0.7, 0.2, 0.1);
 

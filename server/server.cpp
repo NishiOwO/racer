@@ -49,7 +49,7 @@ void net_loop(void){
 				peer->Send(&bs2, HIGH_PRIORITY, RELIABLE, 0, packet->systemAddress, false);
 
 				hmput(players, packet->systemAddress, id);
-				physics_car(id, 0, 2, 0);
+				physics_car(id, 0, 3, 0);
 
 				printf("connection accepted, %llx\n", id);
 			}else if(packet->data[0] == ID_CONNECTION_LOST){
@@ -88,5 +88,5 @@ void net_moved(uint64_t id, double x, double y, double z, double rx, double ry, 
 	bs.Write(rx);
 	bs.Write(ry);
 	bs.Write(rz);
-	peer->Send(&bs, HIGH_PRIORITY, RELIABLE, 0, RakNet::UNASSIGNED_SYSTEM_ADDRESS, true);
+	peer->Send(&bs, HIGH_PRIORITY, RELIABLE_SEQUENCED, 0, RakNet::UNASSIGNED_SYSTEM_ADDRESS, true);
 }
